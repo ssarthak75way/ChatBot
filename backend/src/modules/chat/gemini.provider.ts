@@ -8,7 +8,7 @@ export class GeminiProvider extends AIProvider {
     constructor(apiKey: string) {
         super();
         this.genAI = new GoogleGenerativeAI(apiKey);
-        this.model = this.genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+        this.model = this.genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
     }
 
     private convertMessages(messages: Message[]) {
@@ -34,7 +34,7 @@ export class GeminiProvider extends AIProvider {
         const { history, latestMessage, systemInstruction } = this.convertMessages(messages);
 
         const modelWithSystem = systemInstruction
-            ? this.genAI.getGenerativeModel({ model: "gemini-flash-latest", systemInstruction })
+            ? this.genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction })
             : this.model;
 
         const chat = modelWithSystem.startChat({ history });
@@ -48,7 +48,7 @@ export class GeminiProvider extends AIProvider {
             const { history, latestMessage, systemInstruction } = this.convertMessages(messages);
 
             const modelWithSystem = systemInstruction
-                ? this.genAI.getGenerativeModel({ model: "gemini-flash-latest", systemInstruction })
+                ? this.genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction })
                 : this.model;
 
             const chat = modelWithSystem.startChat({ history });
